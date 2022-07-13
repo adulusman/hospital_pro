@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{% static '/images/img.jpg' %}" class="d-block w-100" alt="...">
+
+    </div>
+    <div class="carousel-item" data-bs-interval="8000">
+      <img src="{% static '/images/img0.jpg' %}" class="d-block w-100" alt="...">
+
+    </div>
+    <div class="carousel-item">
+      <img src="{% static '/images/img1.jpg' %}" class="d-block w-100" alt="...">
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+        {% if user.is_authenticated %}
+        <div class="text-center">
+            {% for msg in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+             <strong>{{user.username}} </strong>{{msg}}
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+            {% endfor %}
+        <hr>
+        <h1>APPOINTMENTS</h1><br>
+        <a class="btn btn-primary" href="{% url 'booking' %}">Book a slot</a>
+        <hr>
+            <div class="text-center">
+                <a href="{% url 'department' %}" class="btn btn-info text-light">Departments</a>
+              <a href="{% url 'doctor' %}" class="btn btn-info text-light">Our Doctors</a>
+            </div>
+        </div>
+        {% else %}
+<div class="text-center">
+        <hr>
+        <h1 class="text-success">WELCOME TO CITY HOSPITAL</h1><br>
+  <h6 class="text-primary">Login for more information</h6>
+  <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+
+  {% endif %}
+    </div>
+
+
+
+{% endblock %}

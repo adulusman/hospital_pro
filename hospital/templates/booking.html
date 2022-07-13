@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Booking
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">BOOKING</h1>
+<hr>
+<div class="container w-50 p-3 my-5 bg-info">
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+        {{ form.media.js }}
+        {{form|crispy}}
+        <div class="text-center">
+            <button type="submit" class="btn btn-warning mb-4">Book</button>
+        </div>
+</form>
+</div>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+            <script src="/static/smart-selects/admin/js/bindfields.js"></script>
+
+{% endblock %}
